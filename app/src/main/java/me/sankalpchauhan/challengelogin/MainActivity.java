@@ -2,6 +2,7 @@ package me.sankalpchauhan.challengelogin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import me.sankalpchauhan.challengelogin.helpers.helper;
+import me.sankalpchauhan.challengelogin.helpers.transitionHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
     //Commonly used methods
     helper help;
 
+    //Transitions
+    transitionHelper transhelp;
+
+    //for custom Animation on Logo
+    AnimationDrawable logoanimation;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +47,21 @@ public class MainActivity extends AppCompatActivity {
         passForget = findViewById(R.id.forgotpass);
         logoem = findViewById(R.id.logo);
 
+        //Logo Animation
+        logoem.setBackgroundResource(R.drawable.logoanimation);
+        logoanimation = (AnimationDrawable) logoem.getBackground();
+
         help = new helper();
+        transhelp = new transitionHelper();
 
         if (!help.isConnected(MainActivity.this))
             help.buildNetworkDialog(MainActivity.this).show();
 
+        transhelp.fadeIn(600,0,findViewById(R.id.mainbox));
+        transhelp.rollInUpLeft(700,0,logoem);
+        transhelp.standUp(1000,0,loginBTN);
+        transhelp.standUp(1000,0,registerBTN);
+        transhelp.rollInUpLeft(700,0,passForget);
 
         loginBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //BASIC INFORMATION INTEGRITY CHECKS
                 if (emailTB.getText().toString().equals("") || passTB.getText().toString().equals("")) {
-                    help.DisplayDialog(MainActivity.this, "Oops!", "Please fill in all the details", "OK");
+                    help.ImageInToast(MainActivity.this,"Please fill in all details", R.drawable.oopsimage);
+                    WrongInfoShake();
                 } else {
                     Toast.makeText(MainActivity.this, "Authenticating...", Toast.LENGTH_LONG).show();
                     SignUpSuccess();
@@ -63,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //To Register Activity with fade_in animation
+                transhelp.rubberBand(800,0,logoem);
                 Intent i = new Intent(MainActivity.this, Register.class);
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, logoem, "reveal");
                 ActivityCompat.startActivity(MainActivity.this, i, options.toBundle());
@@ -78,6 +99,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        logoem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transhelp.tadaHi(700,0,logoem);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!help.isConnected(MainActivity.this))
+            help.buildNetworkDialog(MainActivity.this).show();
     }
 
     @Override
@@ -108,7 +143,11 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        logoanimation.start();
+    }
 
     public void SignUpSuccess(){
         if (emailTB.getText().toString().equals("sankalpchauhan.me@gmail.com") && passTB.getText().toString().equals("12345")){
@@ -117,8 +156,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else{
-            help.DisplayDialog(this, "Oops!", "Invalid Credentials !", "OK");
+            help.StandardToast(this, "Invalid Credentials! ");
+            WrongInfoShake();
         }
+    }
+
+    public void WrongInfoShake(){
+        transhelp.shakeAnimation(400, 1, emailTB);
+        transhelp.shakeAnimation(400, 1, passTB);
     }
 
 

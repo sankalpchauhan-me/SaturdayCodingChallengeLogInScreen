@@ -55,6 +55,15 @@ public class Register extends AppCompatActivity {
 
         help = new helper();
 
+        transhelp.wobble(1500,0,logoem);
+        transhelp.fadeIn(1000,0,findViewById(R.id.secbox));
+        transhelp.standUp(1500,0,regMobileBTN);
+        transhelp.standUp(1500,0,regEmailBTN);
+        transhelp.slideInRight(1000,0,firstnamereg);
+        transhelp.slideInLeft(1000,0,lastnamereg);
+        transhelp.slideInRight(1000,0,passwordreg);
+        transhelp.slideInLeft(1000,0,confirmpasswordreg);
+
         /** Move to Mobile Registration Activity with custom arc animation **/
         regMobileBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +74,7 @@ public class Register extends AppCompatActivity {
                         new OnRevealAnimationListener() {
                             @Override
                             public void onRevealHide() {
+                                transhelp.flash(700,0,logoem);
                                 i.putExtra("firstname", firstnamereg.getText().toString());
                                 i.putExtra("lastname", lastnamereg.getText().toString());
                                 //startActivity(i);
@@ -88,13 +98,24 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (firstnamereg.getText().toString().equals("") || lastnamereg.getText().toString().equals("") || passwordreg.getText().toString().equals("") || confirmpasswordreg.getText().toString().equals("") || emailreg.getText().toString().equals("")) {
-                    help.DisplayDialog(Register.this, "Oops!", "Please fill in all the details", "OK");
+                    help.ImageInToast(Register.this,"Please fill in all details", R.drawable.oopsimage);
+                    WrongInfoShake();
                 } else if (!passwordreg.getText().toString().equals(confirmpasswordreg.getText().toString())) {
-                    help.DisplayDialog(Register.this, "Oops!", "Passwords do not match", "OK");
+                    help.ImageInToast(Register.this,"Passwords do not match", R.drawable.oopsimage);
+                    transhelp.shakeAnimation(400,1,passwordreg);
+                    transhelp.shakeAnimation(400, 1, confirmpasswordreg);
                 } else {
                     // METHODS GOES HERE
-                    Toast.makeText(Register.this, "Clicked", Toast.LENGTH_LONG).show();
+                    help.ImageInToast(Register.this,"Registered", R.drawable.thumbsup);
                 }
+            }
+        });
+
+
+        logoem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transhelp.tadaHi(700,0,logoem);
             }
         });
     }
@@ -102,6 +123,7 @@ public class Register extends AppCompatActivity {
 //Circular Animation On Back Pressed
     @Override
     public void onBackPressed() {
+        transhelp.zoomOut(700,0,logoem);
         transhelp.animateRevealHide(this, findViewById(R.id.rootContainerregister), R.color.colorAccent, logoem.getWidth() / 2,
                 new OnRevealAnimationListener() {
                     @Override
@@ -121,6 +143,14 @@ public class Register extends AppCompatActivity {
         super.onResume();
         findViewById(R.id.childContaineremail).setVisibility(View.VISIBLE);
         findViewById(R.id.secbox).setVisibility(View.VISIBLE);
+    }
+
+    public void WrongInfoShake(){
+        transhelp.shakeAnimation(400, 1, firstnamereg);
+        transhelp.shakeAnimation(400, 1, lastnamereg);
+        transhelp.shakeAnimation(400,1,passwordreg);
+        transhelp.shakeAnimation(400, 1, confirmpasswordreg);
+        transhelp.shakeAnimation(400, 1, emailreg);
     }
 
 

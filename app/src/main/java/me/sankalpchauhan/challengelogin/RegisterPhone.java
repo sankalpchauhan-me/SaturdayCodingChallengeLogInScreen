@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.r0adkll.slidr.Slidr;
+
 import me.sankalpchauhan.challengelogin.helpers.helper;
 import me.sankalpchauhan.challengelogin.helpers.transitionHelper;
 import me.sankalpchauhan.challengelogin.listners.OnRevealAnimationListener;
@@ -57,6 +59,12 @@ public class RegisterPhone extends AppCompatActivity {
 
 
         help = new helper();
+        Slidr.attach(this);
+
+        //transHelper.zoomIn(700,0,logoem);
+        transHelper.wave(700,0,logoem);
+
+
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
@@ -66,6 +74,9 @@ public class RegisterPhone extends AppCompatActivity {
             firstnameregphone.setText(extras.getString("firstname"));
             lastnameregphone.setText(extras.getString("lastname"));
         }
+
+        transHelper.standUp(1500,0,otpBTNphone);
+        transHelper.standUp(1500,0,registerphone);
 
 
         /**
@@ -119,13 +130,21 @@ public class RegisterPhone extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (firstnameregphone.getText().toString().equals("") || lastnameregphone.getText().toString().equals("") || phoneNumberphone.toString().equals("")) {
-                    help.DisplayDialog(RegisterPhone.this, "Oops!", "Please fill in all details", "OK");
+                    help.ImageInToast(RegisterPhone.this,"Please fill in all details", R.drawable.oopsimage);
+                    WrongInfoShake();
                 } else if (otpphone.getText().toString().equals("")) {
                     help.DisplayDialog(RegisterPhone.this, "Just one more step...", "Please fill in OTP ", "OK");
                 } else {
                     Toast.makeText(RegisterPhone.this, "Clicked", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        logoem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transHelper.tadaHi(700,0,logoem);
             }
         });
 
@@ -136,6 +155,7 @@ public class RegisterPhone extends AppCompatActivity {
     //Transitions on back pressed
     @Override
     public void onBackPressed() {
+        transHelper.zoomOut(700,0,logoem);
         findViewById(R.id.childContainerphone).setVisibility(View.INVISIBLE);
         transHelper.animateRevealHide(this, findViewById(R.id.secboxphone), R.color.colorAccent, logoem.getWidth() / 2,
                 new OnRevealAnimationListener() {
@@ -150,5 +170,13 @@ public class RegisterPhone extends AppCompatActivity {
                     }
                 });
     }
+
+    public void WrongInfoShake() {
+        transHelper.shakeAnimation(400, 1, firstnameregphone);
+        transHelper.shakeAnimation(400, 1, lastnameregphone);
+        transHelper.shakeAnimation(400, 1, otpphone);
+        transHelper.shakeAnimation(400, 1, phoneNumberphone);
+    }
+
 
 }

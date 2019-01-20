@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class helper extends AppCompatActivity {
@@ -23,10 +25,20 @@ public class helper extends AppCompatActivity {
         }).show();
     }
 
-
     //GENERIC TOAST
     public void StandardToast(Context context, String Message){
         Toast.makeText(context, Message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void ImageInToast(Context context, String Message, int ImageId)
+    {
+        Toast toast = Toast.makeText(context, Message, Toast.LENGTH_SHORT);
+        LinearLayout toastContentView = (LinearLayout) toast.getView();
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(ImageId);
+        toastContentView.addView(imageView, 0);
+        toast.show();
+
     }
 
 
@@ -55,12 +67,10 @@ public class helper extends AppCompatActivity {
         builder.setIcon(android.R.drawable.ic_dialog_alert);
 
         builder.setPositiveButton("Enable", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent in = new Intent(android.provider.Settings.ACTION_DATA_ROAMING_SETTINGS);
-                startActivity(in);
-                //finish();
+                c.startActivity(in);
             }
         });
 

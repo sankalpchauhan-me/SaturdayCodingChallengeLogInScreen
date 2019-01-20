@@ -49,7 +49,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,12 +69,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:ellipsize="start"
                         android:gravity="center|center_vertical"
                         android:hint="Firstname"
                         android:textColorHighlight="#5196E9"
                         android:textColorHint="#3D78BF"
-
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
 
                         />
                 </android.support.design.widget.TextInputLayout>
@@ -90,11 +93,13 @@
                         android:layout_below="@+id/secbox"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:ellipsize="start"
                         android:gravity="center|center_vertical"
                         android:hint="Lastname"
                         android:textColorHighlight="#5196E9"
-                        android:textColorHint="#3D78BF" />
+                        android:textColorHint="#3D78BF"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"/>
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -114,11 +119,13 @@
                     android:layout_below="@+id/secbox"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:ellipsize="start"
                     android:gravity="center"
                     android:hint="Email ID"
                     android:textColorHighlight="#5196E9"
-                    android:textColorHint="#3D78BF" />
+                    android:textColorHint="#3D78BF"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -140,6 +147,7 @@
                     android:ellipsize="start"
                     android:gravity="center"
                     android:hint="Password"
+                    android:inputType="textPassword"
                     android:textColorHighlight="#5196E9"
                     android:textColorHint="#3D78BF" />
 
@@ -163,6 +171,7 @@
                     android:ellipsize="start"
                     android:gravity="center"
                     android:hint="Confirm Password"
+                    android:inputType="textPassword"
                     android:textColorHighlight="#5196E9"
                     android:textColorHint="#3D78BF" />
             </android.support.design.widget.TextInputLayout>
