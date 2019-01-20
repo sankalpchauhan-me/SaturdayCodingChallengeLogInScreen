@@ -109,6 +109,7 @@ public class Register extends AppCompatActivity {
                 } else {
                     // METHODS GOES HERE
                     help.ImageInToast(Register.this, "Registered", R.drawable.thumbsup);
+                    help.addNotification(Register.this, "Registration Success on Challenge Login App", "Welcome", R.drawable.logo, 1);
                 }
             }
         });

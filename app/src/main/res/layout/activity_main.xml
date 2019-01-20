@@ -113,7 +113,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/buttonsimple"
-                    android:text="Register"
+                    android:text="SignUp"
                     android:textColor="#FFF" />
             </RelativeLayout>
 

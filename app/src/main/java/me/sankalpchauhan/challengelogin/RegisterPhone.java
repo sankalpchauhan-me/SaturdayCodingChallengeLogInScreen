@@ -117,7 +117,8 @@ public class RegisterPhone extends AppCompatActivity {
                     help.DisplayDialog(RegisterPhone.this, "Oops!", "Please check the mobile number that you have entered", "OK");
                 } else {
                     //Implement Here
-                    help.StandardToast(RegisterPhone.this, "Clicked");
+                    help.StandardToast(RegisterPhone.this, "Success");
+                    help.addNotification(RegisterPhone.this, "OTP 6432", "6432 is your OTP for registration", R.drawable.logo, 2);
                 }
             }
         });
@@ -133,7 +134,11 @@ public class RegisterPhone extends AppCompatActivity {
                 } else if (otpphone.getText().toString().equals("")) {
                     help.DisplayDialog(RegisterPhone.this, "Just one more step...", "Please fill in OTP ", "OK");
                 } else {
-                    Toast.makeText(RegisterPhone.this, "Clicked", Toast.LENGTH_SHORT).show();
+                    if (otpphone.getText().toString().equals("6432")) {
+                        help.ImageInToast(RegisterPhone.this, "Registered", R.drawable.thumbsup);
+                    } else {
+                        help.ImageInToast(RegisterPhone.this, "Invalid OTP", R.drawable.oopsimage);
+                    }
                 }
 
             }

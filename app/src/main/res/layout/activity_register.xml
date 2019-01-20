@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/buttonsimple"
-                    android:text="Register with Email"
+                    android:text="SignUp with Email"
                     android:textColor="#FFF" />
 
                 <Button
@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/buttonsimple"
-                    android:text="Register With Phone"
+                    android:text="SignUp With Phone"
                     android:textColor="#FFF" />
             </LinearLayout>
 

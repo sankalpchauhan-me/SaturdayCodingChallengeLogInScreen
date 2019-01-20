@@ -1,19 +1,24 @@
 package me.sankalpchauhan.challengelogin.helpers;
 
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import me.sankalpchauhan.challengelogin.R;
+
 /**
- *  I created a class for most commonly used method so that they don't have to be written again and again
+ * I created a class for most commonly used method so that they don't have to be written again and again
  */
 
 public class helper extends AppCompatActivity {
@@ -79,6 +84,22 @@ public class helper extends AppCompatActivity {
         });
 
         return builder;
+    }
+
+    //Notification Builder
+    public void addNotification(Context mContext, String title, String subject, int Imageid, int ID) {
+        Notification noti = new Notification.Builder(mContext)
+                .setContentTitle(title)
+                .setContentText(subject)
+                .setSmallIcon(Imageid)
+                .setPriority(Notification.PRIORITY_MAX)
+                .setDefaults(Notification.DEFAULT_VIBRATE)
+                .build();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mContext);
+
+// notificationId is a unique int for each notification that you must define
+        notificationManager.notify(ID, noti);
     }
 
 

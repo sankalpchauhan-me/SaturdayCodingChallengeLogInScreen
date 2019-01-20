@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import me.sankalpchauhan.challengelogin.helpers.helper;
 import me.sankalpchauhan.challengelogin.helpers.transitionHelper;
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     help.ImageInToast(MainActivity.this, "Please fill in all details", R.drawable.oopsimage);
                     WrongInfoShake();
                 } else {
-                    Toast.makeText(MainActivity.this, "Authenticating...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Authenticating...", Toast.LENGTH_SHORT).show();
                     SignUpSuccess();
 
                 }
@@ -159,9 +161,11 @@ public class MainActivity extends AppCompatActivity {
     //DUMMY SIGN UP
     public void SignUpSuccess() {
         if (emailTB.getText().toString().equals("sankalpchauhan.me@gmail.com") && passTB.getText().toString().equals("12345")) {
+            help.addNotification(MainActivity.this, "New login from " + android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL, "Login Success on " + Calendar.getInstance().getTime() + " at " + "New Delhi,India", R.drawable.logo, 0);
             Intent i = new Intent(MainActivity.this, MainApp.class);
             startActivity(i);
         } else {
+            help.addNotification(MainActivity.this, "Invalid Login Attempt from" + android.os.Build.MANUFACTURER + " " + android.os.Build.MODEL, "Tried to log in on " + Calendar.getInstance().getTime() + " from " + "New Delhi, India", R.drawable.logo, 0);
             help.StandardToast(this, "Invalid Credentials! ");
             WrongInfoShake();
         }
