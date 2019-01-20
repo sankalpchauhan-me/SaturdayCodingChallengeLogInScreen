@@ -54,22 +54,26 @@ public class MainActivity extends AppCompatActivity {
         help = new helper();
         transhelp = new transitionHelper();
 
+        //NETWORK CHECK
         if (!help.isConnected(MainActivity.this))
             help.buildNetworkDialog(MainActivity.this).show();
 
-        transhelp.fadeIn(600,0,findViewById(R.id.mainbox));
-        transhelp.rollInUpLeft(700,0,logoem);
-        transhelp.standUp(1000,0,loginBTN);
-        transhelp.standUp(1000,0,registerBTN);
-        transhelp.rollInUpLeft(700,0,passForget);
+        //Transitions
+        transhelp.fadeIn(600, 0, findViewById(R.id.mainbox));
+        transhelp.rollInUpLeft(700, 0, logoem);
+        transhelp.standUp(1000, 0, loginBTN);
+        transhelp.standUp(1000, 0, registerBTN);
+        transhelp.rollInUpLeft(700, 0, passForget);
+
+        //BUTTON CLICKS :
 
         loginBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //BASIC INFORMATION INTEGRITY CHECKS
+                //DATA INTEGRITY CHECKS
                 if (emailTB.getText().toString().equals("") || passTB.getText().toString().equals("")) {
-                    help.ImageInToast(MainActivity.this,"Please fill in all details", R.drawable.oopsimage);
+                    help.ImageInToast(MainActivity.this, "Please fill in all details", R.drawable.oopsimage);
                     WrongInfoShake();
                 } else {
                     Toast.makeText(MainActivity.this, "Authenticating...", Toast.LENGTH_LONG).show();
@@ -83,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //To Register Activity with fade_in animation
-                transhelp.rubberBand(800,0,logoem);
+                transhelp.rubberBand(800, 0, logoem);
                 Intent i = new Intent(MainActivity.this, Register.class);
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, logoem, "reveal");
                 ActivityCompat.startActivity(MainActivity.this, i, options.toBundle());
@@ -102,11 +106,12 @@ public class MainActivity extends AppCompatActivity {
         logoem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transhelp.tadaHi(700,0,logoem);
+                transhelp.tadaHi(700, 0, logoem);
             }
         });
 
     }
+    //---- ONCREATE END -----
 
     @Override
     protected void onStart() {
@@ -143,25 +148,27 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
+
+    //For starting Logo Animation
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         logoanimation.start();
     }
 
-    public void SignUpSuccess(){
-        if (emailTB.getText().toString().equals("sankalpchauhan.me@gmail.com") && passTB.getText().toString().equals("12345")){
+    //DUMMY SIGN UP
+    public void SignUpSuccess() {
+        if (emailTB.getText().toString().equals("sankalpchauhan.me@gmail.com") && passTB.getText().toString().equals("12345")) {
             Intent i = new Intent(MainActivity.this, MainApp.class);
             startActivity(i);
-        }
-
-        else{
+        } else {
             help.StandardToast(this, "Invalid Credentials! ");
             WrongInfoShake();
         }
     }
 
-    public void WrongInfoShake(){
+    //SHAKE ANIMATION IN CASE OF DATA INTEGRITY FAILIURE
+    public void WrongInfoShake() {
         transhelp.shakeAnimation(400, 1, emailTB);
         transhelp.shakeAnimation(400, 1, passTB);
     }

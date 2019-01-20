@@ -12,11 +12,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+/**
+ *  I created a class for most commonly used method so that they don't have to be written again and again
+ */
+
 public class helper extends AppCompatActivity {
 
 
     //GENERIC DISPLAY DIALOG
-    public void DisplayDialog(Context context, String title, String message, String posText){
+    public void DisplayDialog(Context context, String title, String message, String posText) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setTitle(title).setMessage(message).setPositiveButton(posText, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -26,12 +30,12 @@ public class helper extends AppCompatActivity {
     }
 
     //GENERIC TOAST
-    public void StandardToast(Context context, String Message){
+    public void StandardToast(Context context, String Message) {
         Toast.makeText(context, Message, Toast.LENGTH_SHORT).show();
     }
 
-    public void ImageInToast(Context context, String Message, int ImageId)
-    {
+    //Custom Toast with Image
+    public void ImageInToast(Context context, String Message, int ImageId) {
         Toast toast = Toast.makeText(context, Message, Toast.LENGTH_SHORT);
         LinearLayout toastContentView = (LinearLayout) toast.getView();
         ImageView imageView = new ImageView(context);
@@ -40,7 +44,6 @@ public class helper extends AppCompatActivity {
         toast.show();
 
     }
-
 
 
     //CHECK NETWORK STATE----------------------------------------------------------------------------------------------------------------------
@@ -53,7 +56,8 @@ public class helper extends AppCompatActivity {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
+            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
+                return true;
             else return false;
         } else
             return false;

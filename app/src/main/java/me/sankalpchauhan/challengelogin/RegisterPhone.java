@@ -48,24 +48,20 @@ public class RegisterPhone extends AppCompatActivity {
         otpphone = findViewById(R.id.otp);
         otpBTNphone = findViewById(R.id.otpBTN);
         registerphone = findViewById(R.id.regBTNphonefinal);
-
-
-        //Transition
-        transHelper = new transitionHelper();
         mRlContainer = findViewById(R.id.containerPhone);
         mLLContainer = findViewById(R.id.LinearPhoneContainer);
 
         logoem = findViewById(R.id.logophone);
 
-
+        transHelper = new transitionHelper();
         help = new helper();
+
+        //Attached Slidr for slide activity end
         Slidr.attach(this);
 
-        //transHelper.zoomIn(700,0,logoem);
-        transHelper.wave(700,0,logoem);
+        transHelper.wave(700, 0, logoem);
 
-
-
+        //Taking data of first name and last name from previous activity so that user don't have to enter again
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
             firstnameregphone.setText(null);
@@ -75,8 +71,9 @@ public class RegisterPhone extends AppCompatActivity {
             lastnameregphone.setText(extras.getString("lastname"));
         }
 
-        transHelper.standUp(1500,0,otpBTNphone);
-        transHelper.standUp(1500,0,registerphone);
+        //Transitions
+        transHelper.standUp(1500, 0, otpBTNphone);
+        transHelper.standUp(1500, 0, registerphone);
 
 
         /**
@@ -112,7 +109,7 @@ public class RegisterPhone extends AppCompatActivity {
             }
         });
 
-
+//BUTTON CLICKS:
         otpBTNphone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,8 +126,9 @@ public class RegisterPhone extends AppCompatActivity {
         registerphone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //DATA INTEGRITY CHECKS
                 if (firstnameregphone.getText().toString().equals("") || lastnameregphone.getText().toString().equals("") || phoneNumberphone.toString().equals("")) {
-                    help.ImageInToast(RegisterPhone.this,"Please fill in all details", R.drawable.oopsimage);
+                    help.ImageInToast(RegisterPhone.this, "Please fill in all details", R.drawable.oopsimage);
                     WrongInfoShake();
                 } else if (otpphone.getText().toString().equals("")) {
                     help.DisplayDialog(RegisterPhone.this, "Just one more step...", "Please fill in OTP ", "OK");
@@ -144,18 +142,20 @@ public class RegisterPhone extends AppCompatActivity {
         logoem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                transHelper.tadaHi(700,0,logoem);
+                transHelper.tadaHi(700, 0, logoem);
             }
         });
 
 
     }
 
+    //-----------ONCREATE END------------
+
 
     //Transitions on back pressed
     @Override
     public void onBackPressed() {
-        transHelper.zoomOut(700,0,logoem);
+        transHelper.zoomOut(700, 0, logoem);
         findViewById(R.id.childContainerphone).setVisibility(View.INVISIBLE);
         transHelper.animateRevealHide(this, findViewById(R.id.secboxphone), R.color.colorAccent, logoem.getWidth() / 2,
                 new OnRevealAnimationListener() {
@@ -171,6 +171,7 @@ public class RegisterPhone extends AppCompatActivity {
                 });
     }
 
+    //SHAKE ANIMATION IN CASE OF DATA INTEGRITY FAILIURE
     public void WrongInfoShake() {
         transHelper.shakeAnimation(400, 1, firstnameregphone);
         transHelper.shakeAnimation(400, 1, lastnameregphone);

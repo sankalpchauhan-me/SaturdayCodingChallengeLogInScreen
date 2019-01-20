@@ -16,23 +16,25 @@ import com.daimajia.androidanimations.library.YoYo;
 import me.sankalpchauhan.challengelogin.R;
 import me.sankalpchauhan.challengelogin.listners.OnRevealAnimationListener;
 
+/**
+ * Class contains transition/animation methods
+ */
 public class transitionHelper extends AppCompatActivity {
 
 
-    public void StartAnimation(View rootview){
+    public void StartAnimation(View rootview) {
         rootview.setVisibility(View.INVISIBLE);
         ViewTreeObserver viewTreeObserver = rootview.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    revealActivity(rootview.getWidth()/2, rootview.getHeight()/2, rootview);
+                    revealActivity(rootview.getWidth() / 2, rootview.getHeight() / 2, rootview);
                     rootview.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
             });
         }
     }
-
 
 
     protected void revealActivity(int x, int y, View rootview) {
@@ -74,87 +76,85 @@ public class transitionHelper extends AppCompatActivity {
         anim.start();
     }
 
-    public void shakeAnimation(int duration, int repeatitions, View view){
+    public void shakeAnimation(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.Shake).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void slideInLeft(int duration, int repeatitions, View view){
+    public void slideInLeft(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.SlideInLeft).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void slideInRight(int duration, int repeatitions, View view){
+    public void slideInRight(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.SlideInRight).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void slideInUp(int duration, int repeatitions, View view){
+    public void slideInUp(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.SlideInUp).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void slideInDown(int duration, int repeatitions, View view){
+    public void slideInDown(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.SlideInDown).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void standUp(int duration, int repeatitions, View view){
+    public void standUp(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.StandUp).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void rollIn(int duration, int repeatitions, View view){
+    public void rollIn(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.RollIn).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void rotateIn(int duration, int repeatitions, View view){
+    public void rotateIn(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.RotateIn).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void rollInUpLeft(int duration, int repeatitions, View view){
+    public void rollInUpLeft(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.RotateInUpLeft).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void fadeIn(int duration, int repeatitions, View view){
+    public void fadeIn(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.FadeIn).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void dropOut(int duration, int repeatitions, View view){
+    public void dropOut(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.DropOut).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void tadaHi(int duration, int repeatitions, View view){
+    public void tadaHi(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.Tada).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void takeOff(int duration, int repeatitions, View view){
+    public void takeOff(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.TakingOff).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void rotateOutDownRight(int duration, int repeatitions, View view){
+    public void rotateOutDownRight(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.RotateOutDownRight).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void rubberBand(int duration, int repeatitions, View view){
+    public void rubberBand(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.RubberBand).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void zoomIn(int duration, int repeatitions, View view){
+    public void zoomIn(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.ZoomIn).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void zoomOut(int duration, int repeatitions, View view){
+    public void zoomOut(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.ZoomOut).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void flash(int duration, int repeatitions, View view){
+    public void flash(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.Flash).duration(duration).repeat(repeatitions).playOn(view);
     }
-    public void wave(int duration, int repeatitions, View view){
+
+    public void wave(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.Wave).duration(duration).repeat(repeatitions).playOn(view);
     }
 
-    public void wobble(int duration, int repeatitions, View view){
+    public void wobble(int duration, int repeatitions, View view) {
         YoYo.with(Techniques.Wobble).duration(duration).repeat(repeatitions).playOn(view);
     }
-
-
-
 
 
 }

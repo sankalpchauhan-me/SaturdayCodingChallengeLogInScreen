@@ -2,25 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerPhone"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterPhone"
     android:background="@drawable/background"
-    android:id="@+id/containerPhone">
+    tools:context=".RegisterPhone">
 
     <LinearLayout
+        android:id="@+id/LinearPhoneContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/LinearPhoneContainer">
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/logophone"
             android:layout_width="211sp"
             android:layout_height="204sp"
             android:layout_gravity="center"
             android:src="@drawable/logo"
-            android:id="@+id/logophone"
-            android:transitionName="reveal"/>
+            android:transitionName="reveal" />
 
         <ImageView
             android:id="@+id/secboxphone"
@@ -41,12 +41,12 @@
         android:layout_marginEnd="50dp">
 
         <LinearLayout
+            android:id="@+id/childContainerphone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/childContainerphone"
             android:focusable="true"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,13 +64,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:ellipsize="end"
                         android:gravity="center|center_vertical"
                         android:hint="Firstname"
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:textColorHighlight="#5196E9"
                         android:textColorHint="#3D78BF"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:singleLine="true"
 
 
                         />
@@ -89,13 +89,13 @@
                         android:layout_below="@+id/secbox"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
+                        android:ellipsize="end"
                         android:gravity="center|center_vertical"
                         android:hint="Lastname"
-                        android:textColorHighlight="#5196E9"
-                        android:textColorHint="#3D78BF"
                         android:maxLines="1"
-                        android:ellipsize="end"
-                        android:singleLine="true"/>
+                        android:singleLine="true"
+                        android:textColorHighlight="#5196E9"
+                        android:textColorHint="#3D78BF" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -135,12 +135,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:textColorHint="#3D78BF"
-                    android:maxLines="1"
                     android:ellipsize="end"
-                    android:singleLine="true">
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAlignment="center"
+                    android:textColorHint="#3D78BF">
 
                     <EditText
                         android:id="@+id/otp"
@@ -149,14 +149,14 @@
                         android:layout_below="@+id/secbox"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
+                        android:ellipsize="end"
                         android:gravity="center"
                         android:hint="OTP"
-                        android:textColorHighlight="#5196E9"
-                        android:textColorHint="#3D78BF"
+                        android:inputType="number"
                         android:maxLines="1"
-                        android:ellipsize="end"
                         android:singleLine="true"
-                        android:inputType="number"/>
+                        android:textColorHighlight="#5196E9"
+                        android:textColorHint="#3D78BF" />
                 </android.support.design.widget.TextInputLayout>
 
                 <Button
@@ -190,7 +190,6 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 
 </RelativeLayout>
