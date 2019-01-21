@@ -10,6 +10,6 @@ Youtube Video:- [Saturday Coding Challenge Screen Recording](https://youtu.be/uk
 APK Download:- https://drive.google.com/uc?authuser=0&id=1Fceq_U4rarLdrM0n7sInPUbDLzIipPmv&export=download
 
 <p align="center">
-    <img src="assets/sample.gif" alt="app"/> <br>
+    <img src="ezgif.com-optimize.gif" alt="app"/> <br>
     </p>
 
